@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		261DEED01C328B30002E1E61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DEECF1C328B30002E1E61 /* AppDelegate.swift */; };
+		261DEED71C328B30002E1E61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261DEED61C328B30002E1E61 /* Assets.xcassets */; };
+		261DEEDA1C328B30002E1E61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 261DEED81C328B30002E1E61 /* LaunchScreen.storyboard */; };
+		261DEEE21C32ABED002E1E61 /* YSKRecognizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261DEEE11C32ABED002E1E61 /* YSKRecognizerViewController.swift */; };
+		26367A671C58C65F000ABF1A /* UIColor+Brightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A571C58C65F000ABF1A /* UIColor+Brightness.m */; };
+		26367A681C58C65F000ABF1A /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A591C58C65F000ABF1A /* UIColor+Hex.m */; };
+		26367A691C58C65F000ABF1A /* UIView+NIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A5B1C58C65F000ABF1A /* UIView+NIB.m */; };
+		26367A6A1C58C65F000ABF1A /* YSKRecognizeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A5E1C58C65F000ABF1A /* YSKRecognizeButton.m */; };
+		26367A6B1C58C65F000ABF1A /* YSKRecognizerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A601C58C65F000ABF1A /* YSKRecognizerCell.m */; };
+		26367A6C1C58C65F000ABF1A /* YSKRecognizerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26367A611C58C65F000ABF1A /* YSKRecognizerCell.xib */; };
+		26367A6D1C58C65F000ABF1A /* YSKRecognizerPowerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A631C58C65F000ABF1A /* YSKRecognizerPowerView.m */; };
+		26367A6E1C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A651C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.m */; };
+		26367A6F1C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26367A661C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.xib */; };
+		C68B3E529BEBEE72758FE392 /* libPods-RecognizerSwiftSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E848E7281EE89D5A2D28A87D /* libPods-RecognizerSwiftSample.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		261DEECC1C328B30002E1E61 /* RecognizerSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecognizerSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		261DEECF1C328B30002E1E61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		261DEED61C328B30002E1E61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		261DEED91C328B30002E1E61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		261DEEDB1C328B30002E1E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		261DEEE11C32ABED002E1E61 /* YSKRecognizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSKRecognizerViewController.swift; sourceTree = "<group>"; };
+		261DEEE31C32B0D5002E1E61 /* RecognizerSwiftSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RecognizerSwiftSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		26367A561C58C65F000ABF1A /* UIColor+Brightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Brightness.h"; sourceTree = "<group>"; };
+		26367A571C58C65F000ABF1A /* UIColor+Brightness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Brightness.m"; sourceTree = "<group>"; };
+		26367A581C58C65F000ABF1A /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		26367A591C58C65F000ABF1A /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		26367A5A1C58C65F000ABF1A /* UIView+NIB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NIB.h"; sourceTree = "<group>"; };
+		26367A5B1C58C65F000ABF1A /* UIView+NIB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NIB.m"; sourceTree = "<group>"; };
+		26367A5D1C58C65F000ABF1A /* YSKRecognizeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKRecognizeButton.h; sourceTree = "<group>"; };
+		26367A5E1C58C65F000ABF1A /* YSKRecognizeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKRecognizeButton.m; sourceTree = "<group>"; };
+		26367A5F1C58C65F000ABF1A /* YSKRecognizerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKRecognizerCell.h; sourceTree = "<group>"; };
+		26367A601C58C65F000ABF1A /* YSKRecognizerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKRecognizerCell.m; sourceTree = "<group>"; };
+		26367A611C58C65F000ABF1A /* YSKRecognizerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSKRecognizerCell.xib; sourceTree = "<group>"; };
+		26367A621C58C65F000ABF1A /* YSKRecognizerPowerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKRecognizerPowerView.h; sourceTree = "<group>"; };
+		26367A631C58C65F000ABF1A /* YSKRecognizerPowerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKRecognizerPowerView.m; sourceTree = "<group>"; };
+		26367A641C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKRecognizerSectionHeaderView.h; sourceTree = "<group>"; };
+		26367A651C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKRecognizerSectionHeaderView.m; sourceTree = "<group>"; };
+		26367A661C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSKRecognizerSectionHeaderView.xib; sourceTree = "<group>"; };
+		35CAA7D9A1F00DA5AF6E5346 /* Pods-RecognizerSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerSwiftSample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		3BFB206D874D21A3DEE067D4 /* Pods-RecognizerSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerSwiftSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
+		7A3F64FE50F1FB1CAD139970 /* Pods-RecognizerSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerSwiftSample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
+		C8A1270D550E6A8A2B6B1CAC /* Pods-RecognizerSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerSwiftSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		E848E7281EE89D5A2D28A87D /* libPods-RecognizerSwiftSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecognizerSwiftSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		261DEEC91C328B30002E1E61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C68B3E529BEBEE72758FE392 /* libPods-RecognizerSwiftSample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		261DEEC31C328B30002E1E61 = {
+			isa = PBXGroup;
+			children = (
+				261DEECE1C328B30002E1E61 /* RecognizerSwiftSample */,
+				261DEECD1C328B30002E1E61 /* Products */,
+				7C1EF005AAE6751FA1FFCC9B /* Pods */,
+				F916ACE09062E02FD00FD096 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		261DEECD1C328B30002E1E61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				261DEECC1C328B30002E1E61 /* RecognizerSwiftSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		261DEECE1C328B30002E1E61 /* RecognizerSwiftSample */ = {
+			isa = PBXGroup;
+			children = (
+				26367A551C58C65F000ABF1A /* categories */,
+				26367A5C1C58C65F000ABF1A /* views */,
+				261DEECF1C328B30002E1E61 /* AppDelegate.swift */,
+				261DEEE11C32ABED002E1E61 /* YSKRecognizerViewController.swift */,
+				261DEED61C328B30002E1E61 /* Assets.xcassets */,
+				261DEED81C328B30002E1E61 /* LaunchScreen.storyboard */,
+				261DEEDB1C328B30002E1E61 /* Info.plist */,
+				261DEEE31C32B0D5002E1E61 /* RecognizerSwiftSample-Bridging-Header.h */,
+			);
+			path = RecognizerSwiftSample;
+			sourceTree = "<group>";
+		};
+		26367A551C58C65F000ABF1A /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				26367A561C58C65F000ABF1A /* UIColor+Brightness.h */,
+				26367A571C58C65F000ABF1A /* UIColor+Brightness.m */,
+				26367A581C58C65F000ABF1A /* UIColor+Hex.h */,
+				26367A591C58C65F000ABF1A /* UIColor+Hex.m */,
+				26367A5A1C58C65F000ABF1A /* UIView+NIB.h */,
+				26367A5B1C58C65F000ABF1A /* UIView+NIB.m */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
+		26367A5C1C58C65F000ABF1A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				26367A5D1C58C65F000ABF1A /* YSKRecognizeButton.h */,
+				26367A5E1C58C65F000ABF1A /* YSKRecognizeButton.m */,
+				26367A5F1C58C65F000ABF1A /* YSKRecognizerCell.h */,
+				26367A601C58C65F000ABF1A /* YSKRecognizerCell.m */,
+				26367A611C58C65F000ABF1A /* YSKRecognizerCell.xib */,
+				26367A621C58C65F000ABF1A /* YSKRecognizerPowerView.h */,
+				26367A631C58C65F000ABF1A /* YSKRecognizerPowerView.m */,
+				26367A641C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.h */,
+				26367A651C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.m */,
+				26367A661C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		7C1EF005AAE6751FA1FFCC9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7A3F64FE50F1FB1CAD139970 /* Pods-RecognizerSwiftSample.debug.xcconfig */,
+				35CAA7D9A1F00DA5AF6E5346 /* Pods-RecognizerSwiftSample.release.xcconfig */,
+				3BFB206D874D21A3DEE067D4 /* Pods-RecognizerSwiftSample.debug.xcconfig */,
+				C8A1270D550E6A8A2B6B1CAC /* Pods-RecognizerSwiftSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F916ACE09062E02FD00FD096 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E848E7281EE89D5A2D28A87D /* libPods-RecognizerSwiftSample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		261DEECB1C328B30002E1E61 /* RecognizerSwiftSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 261DEEDE1C328B30002E1E61 /* Build configuration list for PBXNativeTarget "RecognizerSwiftSample" */;
+			buildPhases = (
+				08F1DB2CC2E6606626817032 /* Check Pods Manifest.lock */,
+				261DEEC81C328B30002E1E61 /* Sources */,
+				261DEEC91C328B30002E1E61 /* Frameworks */,
+				261DEECA1C328B30002E1E61 /* Resources */,
+				41783C5F4AEBBDF4C96DA7CB /* Copy Pods Resources */,
+				C543B8EE182C22FEEE379641 /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RecognizerSwiftSample;
+			productName = RecognizerSwiftSample;
+			productReference = 261DEECC1C328B30002E1E61 /* RecognizerSwiftSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		261DEEC41C328B30002E1E61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Yandex LLC";
+				TargetAttributes = {
+					261DEECB1C328B30002E1E61 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 261DEEC71C328B30002E1E61 /* Build configuration list for PBXProject "RecognizerSwiftSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 261DEEC31C328B30002E1E61;
+			productRefGroup = 261DEECD1C328B30002E1E61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				261DEECB1C328B30002E1E61 /* RecognizerSwiftSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		261DEECA1C328B30002E1E61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				261DEEDA1C328B30002E1E61 /* LaunchScreen.storyboard in Resources */,
+				26367A6C1C58C65F000ABF1A /* YSKRecognizerCell.xib in Resources */,
+				261DEED71C328B30002E1E61 /* Assets.xcassets in Resources */,
+				26367A6F1C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08F1DB2CC2E6606626817032 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		41783C5F4AEBBDF4C96DA7CB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C543B8EE182C22FEEE379641 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecognizerSwiftSample/Pods-RecognizerSwiftSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		261DEEC81C328B30002E1E61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26367A6B1C58C65F000ABF1A /* YSKRecognizerCell.m in Sources */,
+				26367A6A1C58C65F000ABF1A /* YSKRecognizeButton.m in Sources */,
+				26367A6D1C58C65F000ABF1A /* YSKRecognizerPowerView.m in Sources */,
+				26367A671C58C65F000ABF1A /* UIColor+Brightness.m in Sources */,
+				26367A681C58C65F000ABF1A /* UIColor+Hex.m in Sources */,
+				261DEEE21C32ABED002E1E61 /* YSKRecognizerViewController.swift in Sources */,
+				261DEED01C328B30002E1E61 /* AppDelegate.swift in Sources */,
+				26367A6E1C58C65F000ABF1A /* YSKRecognizerSectionHeaderView.m in Sources */,
+				26367A691C58C65F000ABF1A /* UIView+NIB.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		261DEED81C328B30002E1E61 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				261DEED91C328B30002E1E61 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		261DEEDC1C328B30002E1E61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		261DEEDD1C328B30002E1E61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		261DEEDF1C328B30002E1E61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BFB206D874D21A3DEE067D4 /* Pods-RecognizerSwiftSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = RecognizerSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.RecognizerSwiftSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RecognizerSwiftSample/RecognizerSwiftSample-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		261DEEE01C328B30002E1E61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8A1270D550E6A8A2B6B1CAC /* Pods-RecognizerSwiftSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = RecognizerSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.RecognizerSwiftSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/RecognizerSwiftSample/RecognizerSwiftSample-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		261DEEC71C328B30002E1E61 /* Build configuration list for PBXProject "RecognizerSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				261DEEDC1C328B30002E1E61 /* Debug */,
+				261DEEDD1C328B30002E1E61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		261DEEDE1C328B30002E1E61 /* Build configuration list for PBXNativeTarget "RecognizerSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				261DEEDF1C328B30002E1E61 /* Debug */,
+				261DEEE01C328B30002E1E61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 261DEEC41C328B30002E1E61 /* Project object */;
+}

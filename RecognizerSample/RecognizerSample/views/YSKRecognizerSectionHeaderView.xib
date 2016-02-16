@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YSKRecognizerSectionHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xf0-u4-FzJ" userLabel="Power View" customClass="YSKRecognizerPowerView">
+                    <rect key="frame" x="0.0" y="70" width="320" height="2"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="flU-Mm-oTa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0B-bQ-vP8" customClass="YSKRecognizeButton">
+                    <rect key="frame" x="115" y="20" width="30" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6Xp-TE-P7l"/>
+                        <constraint firstAttribute="width" constant="30" id="dSn-Lk-Kdx"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMz-ij-QSZ" userLabel="Stop Button">
+                    <rect key="frame" x="175" y="20" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="C3j-vW-meY"/>
+                        <constraint firstAttribute="width" constant="30" id="nqS-0C-jaa"/>
+                    </constraints>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="TMz-ij-QSZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-1" id="1Jg-TM-OyO"/>
+                <constraint firstAttribute="bottom" secondItem="Xf0-u4-FzJ" secondAttribute="bottom" id="MYr-2o-Oya"/>
+                <constraint firstItem="F0B-bQ-vP8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-30" id="SZu-dB-l3X"/>
+                <constraint firstItem="F0B-bQ-vP8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-1" id="anr-j0-frc"/>
+                <constraint firstItem="Xf0-u4-FzJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jcH-ae-cgh"/>
+                <constraint firstAttribute="trailing" secondItem="Xf0-u4-FzJ" secondAttribute="trailing" id="ohf-rw-iYb"/>
+                <constraint firstItem="TMz-ij-QSZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="30" id="p14-qZ-f2Z"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="powerView" destination="Xf0-u4-FzJ" id="D2K-5B-ajh"/>
+                <outlet property="recognizeButton" destination="F0B-bQ-vP8" id="2cS-Q9-owg"/>
+                <outlet property="stopButton" destination="TMz-ij-QSZ" id="Lf0-WB-8fK"/>
+            </connections>
+            <point key="canvasLocation" x="575" y="479"/>
+        </view>
+    </objects>
+</document>

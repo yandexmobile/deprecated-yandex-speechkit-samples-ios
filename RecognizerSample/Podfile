@@ -1,0 +1,6 @@
+platform :ios, '6.0'
+
+target :RecognizerSample do
+  xcodeproj 'RecognizerSample.xcodeproj'
+  pod 'YandexSpeechKit', '2.5.0'
+end
