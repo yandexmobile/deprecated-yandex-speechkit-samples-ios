@@ -31,7 +31,7 @@ class YSKRecognizerViewController: UITableViewController, YSKRecognizerDelegate 
     var sectionHeaderView: YSKRecognizerSectionHeaderView?
     
     convenience init(recognizerLanguage language: String?, recognizerModel model: String?) {
-        self.init(style: UITableViewStyle.Plain)
+        self.init(style: .plain)
         
         recognizerLanguage = language
         recognizerModel = model
@@ -40,26 +40,26 @@ class YSKRecognizerViewController: UITableViewController, YSKRecognizerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Recognizer Swift Sample"
+        title = "Recognizer Swift Sample"
         
         sectionHeaderView = YSKRecognizerSectionHeaderView.loadFromNIB() as? YSKRecognizerSectionHeaderView
         
-        sectionHeaderView?.recognizeButton?.addTarget(self, action: "onRecognizerButtonTap", forControlEvents: UIControlEvents.TouchUpInside)
-        sectionHeaderView?.stopButton?.addTarget(self, action: "onStopButtonTap", forControlEvents: UIControlEvents.TouchUpInside)
+        sectionHeaderView?.recognizeButton?.addTarget(self, action: #selector(YSKRecognizerViewController.onRecognizerButtonTap), for: .touchUpInside)
+        sectionHeaderView?.stopButton?.addTarget(self, action: #selector(YSKRecognizerViewController.onStopButtonTap), for: .touchUpInside)
         
-        self.tableView.tableFooterView = UIView()
-        self.tableView.estimatedRowHeight = 44.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.registerNib(UINib.init(nibName: "YSKRecognizerCell", bundle: nil), forCellReuseIdentifier: kTableViewCellReuseIdentifier)
+        tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(UINib.init(nibName: "YSKRecognizerCell", bundle: nil), forCellReuseIdentifier: kTableViewCellReuseIdentifier)
     }
 
     // MARK: - Actions
     
     func onRecognizerButtonTap() {
         // Create new YSKRecognizer instance for every request.
-        recognizer = YSKRecognizer.init(language: recognizerLanguage, model: recognizerModel)
+        recognizer = YSKRecognizer(language: recognizerLanguage, model: recognizerModel)
         recognizer?.delegate = self
-        recognizer?.VADEnabled = true
+        recognizer?.isVADEnabled = true
         
         // Cleanup previouse result.
         recognition = nil;
@@ -76,16 +76,16 @@ class YSKRecognizerViewController: UITableViewController, YSKRecognizerDelegate 
 
     // MARK: - UITableViewDataSource
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recognition?.hypotheses?.count ?? 0;
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kTableViewCellReuseIdentifier, forIndexPath: indexPath) as? YSKRecognizerCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: kTableViewCellReuseIdentifier, for: indexPath) as? YSKRecognizerCell
 
         // Use recognition YSKRecognition -bestResultText value for the best recognition result.
         // Or -hypotheses for displaying all options.
-        let hypothesis = recognition!.hypotheses[indexPath.row]
+        let hypothesis = recognition!.hypotheses[indexPath.row] as! YSKRecognitionHypothesis
         cell!.resultLabel?.text = hypothesis.normalized
         cell!.percentLabel?.text = String(format: "%ld%%", (100 * hypothesis.confidence))
         
@@ -94,56 +94,56 @@ class YSKRecognizerViewController: UITableViewController, YSKRecognizerDelegate 
 
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return sectionHeaderView
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 72.0
     }
     
     // MARK: - YSKRecognizerDelegate
     
-    func recognizerDidStartRecording(recognizer: YSKRecognizer!) {
-        self.tableView.reloadData()
-        sectionHeaderView?.recognizeButton?.enabled = false
+    func recognizerDidStartRecording(_ recognizer: YSKRecognizer!) {
+        tableView.reloadData()
+        sectionHeaderView?.recognizeButton?.isEnabled = false
         
         // Start showing voice "power" line.
         sectionHeaderView?.powerView?.power = 0.0
     }
     
-    func recognizerDidFinishRecording(recognizer: YSKRecognizer!) {
+    func recognizerDidFinishRecording(_ recognizer: YSKRecognizer!) {
         // Stop showing voice "power" line.
         sectionHeaderView?.powerView?.power = 0.0
     }
     
-    func recognizer(recognizer: YSKRecognizer!, didReceivePartialResults results: YSKRecognition!, withEndOfUtterance endOfUtterance: Bool) {
+    func recognizer(_ recognizer: YSKRecognizer!, didReceivePartialResults results: YSKRecognition!, withEndOfUtterance endOfUtterance: Bool) {
         recognition = results
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
-    func recognizer(recognizer: YSKRecognizer!, didCompleteWithResults results: YSKRecognition!) {
+    func recognizer(_ recognizer: YSKRecognizer!, didCompleteWithResults results: YSKRecognition!) {
         recognition = results
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         self.recognizer = nil;
-        sectionHeaderView?.recognizeButton?.enabled = true
+        sectionHeaderView?.recognizeButton?.isEnabled = true
     }
     
-    func recognizer(recognizer: YSKRecognizer!, didUpdatePower power: Float) {
+    func recognizer(_ recognizer: YSKRecognizer!, didUpdatePower power: Float) {
         // Show voice "power" line.
         sectionHeaderView?.powerView?.power = CGFloat(power)
     }
     
-    func recognizer(recognizer: YSKRecognizer!, didFailWithError error: NSError!) {
-        let failAlert = UIAlertController.init(title: nil, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+    func recognizer(_ recognizer: YSKRecognizer!, didFailWithError error: Error!) {
+        let failAlert = UIAlertController.init(title: nil, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+        let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
         failAlert.addAction(action)
         
-        self.presentViewController(failAlert, animated: true, completion: nil);
+        self.present(failAlert, animated: true, completion: nil);
         
         self.recognizer = nil;
-        sectionHeaderView?.recognizeButton?.enabled = true
+        sectionHeaderView?.recognizeButton?.isEnabled = true
     }
 
 }

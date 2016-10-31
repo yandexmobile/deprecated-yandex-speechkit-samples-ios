@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Configure SpeechKit lib, this method should be called _before_ any SpeechKit functions.
         // Generate your own app key for this purpose.
-        YSKSpeechKit.sharedInstance().configureWithAPIKey("069b6659-984b-4c5f-880e-aaedcfd84102");
+        YSKSpeechKit.sharedInstance().configure(withAPIKey: "069b6659-984b-4c5f-880e-aaedcfd84102");
 
         // [OPTIONAL] Set SpeechKit log level, for more options see YSKLogLevel enum.
         YSKSpeechKit.sharedInstance().setLogLevel(YSKLogLevel(YSKLogLevelWarn));
@@ -35,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [OPTIONAL] Set YSKSpeechKit parameters, for all parameters and possible values see documentation.
         YSKSpeechKit.sharedInstance().setParameter(YSKDisableAntimat, withValue: "false");
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds);
+        window = UIWindow(frame: UIScreen.main.bounds);
         
         let recognizerController = YSKRecognizerViewController(recognizerLanguage: YSKRecognitionLanguageRussian, recognizerModel: YSKRecognitionModelGeneral);
         let navigationController = UINavigationController(rootViewController: recognizerController);
-        navigationController.navigationBar.translucent = true;
+        navigationController.navigationBar.isTranslucent = true;
         window?.rootViewController = navigationController;
         
         window?.makeKeyAndVisible();

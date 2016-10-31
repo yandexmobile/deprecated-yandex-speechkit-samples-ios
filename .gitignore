@@ -18,7 +18,9 @@ xcuserdata
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
+*.xcworkspace
 Pods/
+Podfile.lock
 
 ## Mac OS
 .DS_Store

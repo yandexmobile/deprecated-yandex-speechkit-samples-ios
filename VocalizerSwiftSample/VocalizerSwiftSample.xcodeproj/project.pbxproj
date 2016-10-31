@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		267FCD441DAFC7F100D9CD80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD431DAFC7F100D9CD80 /* AppDelegate.swift */; };
+		267FCD4B1DAFC7F100D9CD80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 267FCD4A1DAFC7F100D9CD80 /* Assets.xcassets */; };
+		267FCD4E1DAFC7F100D9CD80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 267FCD4C1DAFC7F100D9CD80 /* LaunchScreen.storyboard */; };
+		267FCD601DAFC97500D9CD80 /* CALayer+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD581DAFC97500D9CD80 /* CALayer+Color.m */; };
+		267FCD611DAFC97500D9CD80 /* UIColor+Brightness.m in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD5A1DAFC97500D9CD80 /* UIColor+Brightness.m */; };
+		267FCD621DAFC97500D9CD80 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD5C1DAFC97500D9CD80 /* UIColor+Hex.m */; };
+		267FCD631DAFC97500D9CD80 /* YSKPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD5F1DAFC97500D9CD80 /* YSKPlayButton.m */; };
+		267FCD661DAFCA7200D9CD80 /* YSKVocalizerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267FCD641DAFCA7200D9CD80 /* YSKVocalizerViewController.swift */; };
+		267FCD671DAFCA7200D9CD80 /* YSKVocalizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 267FCD651DAFCA7200D9CD80 /* YSKVocalizerViewController.xib */; };
+		EDEA46C58FEA4B9405B59CED /* libPods-VocalizerSwiftSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 920F0C8DA7BA6918D58D71BB /* libPods-VocalizerSwiftSample.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		267FCD401DAFC7F100D9CD80 /* VocalizerSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocalizerSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		267FCD431DAFC7F100D9CD80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		267FCD4A1DAFC7F100D9CD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		267FCD4D1DAFC7F100D9CD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		267FCD4F1DAFC7F100D9CD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		267FCD551DAFC8E900D9CD80 /* VocalizerSwiftSample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VocalizerSwiftSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		267FCD571DAFC97500D9CD80 /* CALayer+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Color.h"; sourceTree = "<group>"; };
+		267FCD581DAFC97500D9CD80 /* CALayer+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Color.m"; sourceTree = "<group>"; };
+		267FCD591DAFC97500D9CD80 /* UIColor+Brightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Brightness.h"; sourceTree = "<group>"; };
+		267FCD5A1DAFC97500D9CD80 /* UIColor+Brightness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Brightness.m"; sourceTree = "<group>"; };
+		267FCD5B1DAFC97500D9CD80 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		267FCD5C1DAFC97500D9CD80 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		267FCD5E1DAFC97500D9CD80 /* YSKPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKPlayButton.h; sourceTree = "<group>"; };
+		267FCD5F1DAFC97500D9CD80 /* YSKPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKPlayButton.m; sourceTree = "<group>"; };
+		267FCD641DAFCA7200D9CD80 /* YSKVocalizerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSKVocalizerViewController.swift; sourceTree = "<group>"; };
+		267FCD651DAFCA7200D9CD80 /* YSKVocalizerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSKVocalizerViewController.xib; sourceTree = "<group>"; };
+		4757041358BA693388D96E8A /* Pods-VocalizerSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VocalizerSwiftSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VocalizerSwiftSample/Pods-VocalizerSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
+		5EE99002F445FD3BFBA5031C /* Pods-VocalizerSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VocalizerSwiftSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-VocalizerSwiftSample/Pods-VocalizerSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		920F0C8DA7BA6918D58D71BB /* libPods-VocalizerSwiftSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VocalizerSwiftSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		267FCD3D1DAFC7F100D9CD80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDEA46C58FEA4B9405B59CED /* libPods-VocalizerSwiftSample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		267FCD371DAFC7F100D9CD80 = {
+			isa = PBXGroup;
+			children = (
+				267FCD421DAFC7F100D9CD80 /* VocalizerSwiftSample */,
+				267FCD411DAFC7F100D9CD80 /* Products */,
+				725FF5955076CCDDF59847AE /* Pods */,
+				BB3E7094BE7F15317B0277E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		267FCD411DAFC7F100D9CD80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				267FCD401DAFC7F100D9CD80 /* VocalizerSwiftSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		267FCD421DAFC7F100D9CD80 /* VocalizerSwiftSample */ = {
+			isa = PBXGroup;
+			children = (
+				267FCD561DAFC97500D9CD80 /* categories */,
+				267FCD5D1DAFC97500D9CD80 /* views */,
+				267FCD431DAFC7F100D9CD80 /* AppDelegate.swift */,
+				267FCD641DAFCA7200D9CD80 /* YSKVocalizerViewController.swift */,
+				267FCD651DAFCA7200D9CD80 /* YSKVocalizerViewController.xib */,
+				267FCD4A1DAFC7F100D9CD80 /* Assets.xcassets */,
+				267FCD4C1DAFC7F100D9CD80 /* LaunchScreen.storyboard */,
+				267FCD4F1DAFC7F100D9CD80 /* Info.plist */,
+				267FCD551DAFC8E900D9CD80 /* VocalizerSwiftSample-Bridging-Header.h */,
+			);
+			path = VocalizerSwiftSample;
+			sourceTree = "<group>";
+		};
+		267FCD561DAFC97500D9CD80 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				267FCD571DAFC97500D9CD80 /* CALayer+Color.h */,
+				267FCD581DAFC97500D9CD80 /* CALayer+Color.m */,
+				267FCD591DAFC97500D9CD80 /* UIColor+Brightness.h */,
+				267FCD5A1DAFC97500D9CD80 /* UIColor+Brightness.m */,
+				267FCD5B1DAFC97500D9CD80 /* UIColor+Hex.h */,
+				267FCD5C1DAFC97500D9CD80 /* UIColor+Hex.m */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
+		267FCD5D1DAFC97500D9CD80 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				267FCD5E1DAFC97500D9CD80 /* YSKPlayButton.h */,
+				267FCD5F1DAFC97500D9CD80 /* YSKPlayButton.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		725FF5955076CCDDF59847AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4757041358BA693388D96E8A /* Pods-VocalizerSwiftSample.debug.xcconfig */,
+				5EE99002F445FD3BFBA5031C /* Pods-VocalizerSwiftSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BB3E7094BE7F15317B0277E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				920F0C8DA7BA6918D58D71BB /* libPods-VocalizerSwiftSample.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		267FCD3F1DAFC7F100D9CD80 /* VocalizerSwiftSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 267FCD521DAFC7F100D9CD80 /* Build configuration list for PBXNativeTarget "VocalizerSwiftSample" */;
+			buildPhases = (
+				F65D5963F884B44374934272 /* Check Pods Manifest.lock */,
+				267FCD3C1DAFC7F100D9CD80 /* Sources */,
+				267FCD3D1DAFC7F100D9CD80 /* Frameworks */,
+				267FCD3E1DAFC7F100D9CD80 /* Resources */,
+				E97BB786BC1418CB4DFB216A /* Embed Pods Frameworks */,
+				DB481E632CFEDA9E8EEB997B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VocalizerSwiftSample;
+			productName = VocalizerSwiftSample;
+			productReference = 267FCD401DAFC7F100D9CD80 /* VocalizerSwiftSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		267FCD381DAFC7F100D9CD80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Yandex LLC";
+				TargetAttributes = {
+					267FCD3F1DAFC7F100D9CD80 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 267FCD3B1DAFC7F100D9CD80 /* Build configuration list for PBXProject "VocalizerSwiftSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 267FCD371DAFC7F100D9CD80;
+			productRefGroup = 267FCD411DAFC7F100D9CD80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				267FCD3F1DAFC7F100D9CD80 /* VocalizerSwiftSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		267FCD3E1DAFC7F100D9CD80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				267FCD4E1DAFC7F100D9CD80 /* LaunchScreen.storyboard in Resources */,
+				267FCD4B1DAFC7F100D9CD80 /* Assets.xcassets in Resources */,
+				267FCD671DAFCA7200D9CD80 /* YSKVocalizerViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DB481E632CFEDA9E8EEB997B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VocalizerSwiftSample/Pods-VocalizerSwiftSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E97BB786BC1418CB4DFB216A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VocalizerSwiftSample/Pods-VocalizerSwiftSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F65D5963F884B44374934272 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		267FCD3C1DAFC7F100D9CD80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				267FCD661DAFCA7200D9CD80 /* YSKVocalizerViewController.swift in Sources */,
+				267FCD611DAFC97500D9CD80 /* UIColor+Brightness.m in Sources */,
+				267FCD621DAFC97500D9CD80 /* UIColor+Hex.m in Sources */,
+				267FCD631DAFC97500D9CD80 /* YSKPlayButton.m in Sources */,
+				267FCD601DAFC97500D9CD80 /* CALayer+Color.m in Sources */,
+				267FCD441DAFC7F100D9CD80 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		267FCD4C1DAFC7F100D9CD80 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				267FCD4D1DAFC7F100D9CD80 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		267FCD501DAFC7F100D9CD80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		267FCD511DAFC7F100D9CD80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		267FCD531DAFC7F100D9CD80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4757041358BA693388D96E8A /* Pods-VocalizerSwiftSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = VocalizerSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.VocalizerSwiftSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VocalizerSwiftSample/VocalizerSwiftSample-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		267FCD541DAFC7F100D9CD80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EE99002F445FD3BFBA5031C /* Pods-VocalizerSwiftSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = VocalizerSwiftSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.VocalizerSwiftSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/VocalizerSwiftSample/VocalizerSwiftSample-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		267FCD3B1DAFC7F100D9CD80 /* Build configuration list for PBXProject "VocalizerSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				267FCD501DAFC7F100D9CD80 /* Debug */,
+				267FCD511DAFC7F100D9CD80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		267FCD521DAFC7F100D9CD80 /* Build configuration list for PBXNativeTarget "VocalizerSwiftSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				267FCD531DAFC7F100D9CD80 /* Debug */,
+				267FCD541DAFC7F100D9CD80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 267FCD381DAFC7F100D9CD80 /* Project object */;
+}
