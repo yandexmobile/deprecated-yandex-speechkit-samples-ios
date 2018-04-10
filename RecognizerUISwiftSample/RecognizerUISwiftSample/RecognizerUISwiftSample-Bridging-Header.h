@@ -2,7 +2,7 @@
 //  RecognizerUISwiftSample-Bridging-Header.h
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@
 #ifndef RecognizerUISwiftSample_Bridging_Header_h
 #define RecognizerUISwiftSample_Bridging_Header_h
 
-#import <YandexSpeechKit/SpeechKit.h>
-#import "CALayer+Color.h"
+#import <YandexSpeechKit/YandexSpeechKit.h>
 
 #endif /* RecognizerUISwiftSample_Bridging_Header_h */

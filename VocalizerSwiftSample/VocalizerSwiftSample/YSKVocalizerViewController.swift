@@ -2,7 +2,7 @@
 //  YSKVocalizerViewController.swift
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,25 +18,14 @@
 
 import UIKit
 
-class YSKVocalizerViewController: UIViewController, YSKVocalizerDelegate {
+class YSKVocalizerViewController: UIViewController, YSKVocalizerDelegate, UITextViewDelegate {
 
-    private var vocalizer: YSKVocalizer?
-    private var vocalizerLanguage: String!
+    private var vocalizer: YSKOnlineVocalizer?
 
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var processStateLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
-
-    init(language: String) {
-        super.init(nibName: nil, bundle: nil)
-        vocalizerLanguage = language
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var synthesisTextView: UITextView!
+    @IBOutlet weak var logTextView: YSKTextView!
 
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -46,76 +35,91 @@ class YSKVocalizerViewController: UIViewController, YSKVocalizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Vocalizer Sample";
-
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillShowNotification(notification:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHideNotification(notification:)), name: .UIKeyboardWillHide, object: nil)
-
-        let tapRecognizer = UITapGestureRecognizer(target: textView, action: #selector(resignFirstResponder))
-        let swipeRecognizer = UISwipeGestureRecognizer(target: textView, action: #selector(resignFirstResponder))
-        swipeRecognizer.direction = .down
-
-        view.addGestureRecognizer(tapRecognizer)
-        view.addGestureRecognizer(swipeRecognizer)
     }
 
-    //MARK :- Actions
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-    @IBAction func onPlayButtonTap() {
-        // Create new YSKVocalizer instance for every request, for more options see YSKVocalizer.h.
-        vocalizer = YSKVocalizer(text: textView.text, language: vocalizerLanguage, autoPlay: true, voice: "omazh")
-        vocalizer?.delegate = self
+        // Before start recording or playing you should activate application's audio session.
+        // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+        // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+        DispatchQueue.global(qos: .default).async { [unowned self] in
+            var activationError: Error?
+            do {
+                // This process could take much time, so it's recommended to call this method in background thread.
+                try YSKAudioSessionHandler.sharedInstance().activateAudioSession()
+            } catch let error {
+                activationError = error
+            }
 
+            DispatchQueue.main.async {
+                if let error = activationError {
+                    self.logTextView.append(text: error.localizedDescription)
+                } else {
+                    self.createVocalizer()
+                    self.startButton.isEnabled = true
+                    self.stopButton.isEnabled = true
+                }
+            }
+        }
+    }
+
+    //MARK: - Actions
+
+    @IBAction func onStartButtonTap() {
         // Start vocalizer.
-        vocalizer?.start()
-
-        playButton.isEnabled = false;
+        vocalizer?.synthesize(synthesisTextView.text, mode: .append)
     }
 
     @IBAction func onStopButtonTap() {
         // Stop vocalizer.
         vocalizer?.cancel()
+        logTextView.append(text: "Stop playing")
     }
 
-    func onKeyboardWillShowNotification(notification: Notification) {
-        let rawFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue;
-        let keyboardFrame = view.convert(rawFrame, from: nil)
-        let bottomGap = view.frame.size.height - textView.frame.maxY;
+    //MARK: - Internal
 
-        textViewBottomConstraint.constant = keyboardFrame.size.height - bottomGap + 40
-        textView.setNeedsUpdateConstraints()
+    private func createVocalizer() {
+        let settings = YSKOnlineVocalizerSettings(language: YSKLanguage.russian())
+        //Optional settings
+        settings.voice = YSKVoice.ermil()
+        settings.emotion = YSKEmotion.good()
+
+        vocalizer = YSKOnlineVocalizer(settings: settings)
+        vocalizer?.delegate = self
+        vocalizer?.prepare()
     }
 
-    func onKeyboardWillHideNotification(notification: Notification) {
-        textViewBottomConstraint.constant = 20
-        textView.setNeedsUpdateConstraints()
-    }
+    //MARK: - YSKVocalizerDelegate
 
-    //MARK :- YSKVocalizerDelegate
-
-    func vocalizerDidBeginSynthesis(_ vocalizer: YSKVocalizer!) {
+    func vocalizer(_ vocalizer: YSKVocalizing, didReceivePartialSynthesis synthesis: YSKSynthesis) {
         // Update UI when synthesis was begun.
-        processStateLabel.text = "Synthesizing in progress..."
+        logTextView.append(text: "Synthesis: " + synthesis.description)
     }
 
-    func vocalizerDidStartPlaying(_ vocalizer: YSKVocalizer!) {
+    func vocalizerDidStartPlaying(_ vocalizer: YSKVocalizing) {
         // Update UI when playing was begun.
-        processStateLabel.text = "Playing";
+        logTextView.append(text: "Start playing")
     }
 
-    func vocalizerDidFinishPlaying(_ vocalizer: YSKVocalizer!) {
+    func vocalizerDidFinishPlaying(_ vocalizer: YSKVocalizing) {
         // Update UI when playing was finished.
-        playButton.isEnabled = true;
-        processStateLabel.text = "Put your text here";
-        self.vocalizer = nil;
+        logTextView.append(text: "Finish playing")
     }
 
-    func vocalizer(_ vocalizer: YSKVocalizer!, didFailWithError error: Error!) {
-        let failAlert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(failAlert, animated: true, completion: nil)
+    func vocalizer(_ vocalizer: YSKVocalizing, didFailWithError error: Error) {
+        logTextView.append(text: error.localizedDescription)
+    }
 
-        playButton.isEnabled = true;
+    //MARK: - UITextViewDelegate
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+
+        return true
     }
 }

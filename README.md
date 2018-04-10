@@ -1,7 +1,16 @@
+<p align="center" >
+  <img src="https://yastatic.net/doccenter/images/tech-ru/speechkit/freeze/Ts_YHKzyKst6Oe-VCHRciqug0c.png" alt="Yandex SpeechKit" title="Yandex SpeechKit  Mobile SDK">
+</p>
 
-# Yandex SpeechKit  Mobile SDK
+## Yandex SpeechKit Mobile SDK Samples
+These samples demonstrate how to work with
 
-Grab it:
+* **YSKRecognizer**, a speech recognition tool.
+* **YSKSpeechRecognitionViewController**, an universal UI component for speech recognition.
+* **YSKPhraseSpotter**, a low-energy recognizer for a predefined set of commands.
+* **YSKVocalizer**, a tool to translate texts to speech.
+
+## Grab it:
 
 ```xml
 source 'https://github.com/CocoaPods/Specs.git'
@@ -11,14 +20,6 @@ target 'Target' do
     pod 'YandexSpeechKit', '2.5.0'
 end
 ```
-
-## Yandex SpeechKit Mobile SDK Samples
-These samples demonstrate how to work with
-
-* **YSKRecognizer**, a speech recognition tool.
-* **YSKSpeechRecognitionViewController**, an universal UI component for speech recognition.
-* **YSKPhraseSpotter**, a low-energy recognizer for a predefined set of commands.
-* **YSKVocalizer**, a tool to translate texts to speech.
 
 ## License
 

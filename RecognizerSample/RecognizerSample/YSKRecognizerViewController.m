@@ -2,7 +2,7 @@
 //  YSKRecognizerViewController.m
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,39 +16,25 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <YandexSpeechKit/SpeechKit.h>
-
+#import <YandexSpeechKit/YandexSpeechKit.h>
 #import "YSKRecognizerViewController.h"
-#import "UIView+NIB.h"
-#import "YSKRecognizerSectionHeaderView.h"
-#import "YSKRecognizerPowerView.h"
-#import "YSKRecognizerCell.h"
+#import "YSKTextView.h"
 
 static NSString *const kTableViewCellReuseIdentifier = @"hypothesesCellID";
 
 @interface YSKRecognizerViewController ()<YSKRecognizerDelegate> {
-    YSKRecognizerSectionHeaderView *_sectionHeaderView;
-    
-    YSKRecognition *_recognition;
-    YSKRecognizer *_recognizer;
-    
-    NSString *_recognizerModel;
-    NSString *_recognizerLanguage;
-}
+    IBOutlet UIButton *_startButton;
+    IBOutlet UIButton *_stopButton;
+    IBOutlet UIProgressView *_progressView;
+    IBOutlet YSKTextView *_logTextView;
 
+    YSKOnlineRecognizer *_recognizer;
+}
+- (IBAction)onStartButtonTap:(id)sender;
+- (IBAction)onStopButtonTap:(id)sender;
 @end
 
 @implementation YSKRecognizerViewController
-
-- (instancetype)initWithRecognizerModel:(NSString *)model language:(NSString *)language
-{
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        _recognizerLanguage = language;
-        _recognizerModel = model;
-    }
-    return self;
-}
 
 #pragma mark - UIViewController Lifecycle
 
@@ -56,122 +42,104 @@ static NSString *const kTableViewCellReuseIdentifier = @"hypothesesCellID";
 {
     [super viewDidLoad];
     self.title = @"Recognizer Sample";
-    
-    _sectionHeaderView = [YSKRecognizerSectionHeaderView loadFromNIB];
-    [_sectionHeaderView.recognizeButton addTarget:self action:@selector(onRecognizeButtonTap) forControlEvents:UIControlEventTouchUpInside];
-    [_sectionHeaderView.stopButton addTarget:self action:@selector(onStopButtonTap) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.estimatedRowHeight = 44.f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"YSKRecognizerCell" bundle:nil] forCellReuseIdentifier:kTableViewCellReuseIdentifier];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    // Before start recording or playing you should activate application's audio session.
+    // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+    // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong typeof(wself) sself = wself;
+        if (sself == nil) return;
+
+        NSError *error;
+        // This process could take much time, so it's recommended to call this method in background thread.
+        BOOL success = [[YSKAudioSessionHandler sharedInstance] activateAudioSession:&error];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [sself createRecognizer];
+                sself->_startButton.enabled = YES;
+                sself->_stopButton.enabled = YES;
+            }
+            else {
+                [sself->_logTextView appendText:error.localizedDescription];
+            }
+        });
+    });
 }
 
 #pragma mark - Actions
 
-- (void)onRecognizeButtonTap
+- (IBAction)onStartButtonTap:(id)sender
 {
-    // Create new YSKRecognizer instance for every request.
-    _recognizer = [[YSKRecognizer alloc] initWithLanguage:_recognizerLanguage model:_recognizerModel];
+    [_recognizer startRecording];
+}
+
+- (IBAction)onStopButtonTap:(id)sender
+{
+    [_recognizer stopRecording];
+}
+
+#pragma mark - Internal
+
+- (void)createRecognizer
+{
+    YSKOnlineRecognizerSettings *settings = [[YSKOnlineRecognizerSettings alloc] initWithLanguage:[YSKLanguage russian] model:[YSKOnlineModel queries]];
+    // Optional settings
+    settings.disableAntimat = YES;
+    settings.enablePunctuation = NO;
+
+    _recognizer = [[YSKOnlineRecognizer alloc] initWithSettings:settings];
     _recognizer.delegate = self;
-    _recognizer.VADEnabled = YES;
-    
-    // Cleanup previouse result.
-    _recognition = nil;
-
-    // Start recognition.
-    [_recognizer start];
-}
-
-- (void)onStopButtonTap
-{
-    // Stop recognition.
-    [_recognizer cancel];
-    _recognizer = nil;
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _recognition.hypotheses.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    YSKRecognizerCell *cell = [tableView dequeueReusableCellWithIdentifier:kTableViewCellReuseIdentifier forIndexPath:indexPath];
-    
-    // Use recognition YSKRecognition -bestResultText value for the best recognition result.
-    // Or -hypotheses for displaying all options.
-    YSKRecognitionHypothesis *hypothesis = (YSKRecognitionHypothesis *)_recognition.hypotheses[indexPath.row];
-    cell.resultLabel.text = hypothesis.normalized;
-    cell.percentLabel.text = [NSString stringWithFormat:@"%ld%%", (long)(100 * hypothesis.confidence)];
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return _sectionHeaderView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 72.f;
+    [_recognizer prepare];
 }
 
 #pragma mark - YSKRecognizerDelegate
 
-- (void)recognizerDidStartRecording:(YSKRecognizer *)recognizer
+- (void)recognizerDidStartRecording:(id<YSKRecognizing>)recognizer
 {
-    [self.tableView reloadData];
-    _sectionHeaderView.recognizeButton.enabled = NO;
-    
+    [_logTextView appendText:@"Start recording..."];
+
     // Start showing voice "power" line.
-    _sectionHeaderView.powerView.power = 0.f;
+    _progressView.progress = 0.f;
 }
 
-- (void)recognizerDidFinishRecording:(YSKRecognizer *)recognizer
+- (void)recognizerDidFinishRecording:(id<YSKRecognizing>)recognizer
 {
+    [_logTextView appendText:@"Finish recording"];
+
     // Stop showing voice "power" line.
-    _sectionHeaderView.powerView.power = 0.f;
+    _progressView.progress = 0.f;
 }
 
-- (void)recognizer:(YSKRecognizer *)recognizer didReceivePartialResults:(YSKRecognition *)results withEndOfUtterance:(BOOL)endOfUtterance
+- (void)recognizer:(id<YSKRecognizing>)recognizer didReceivePartialResults:(YSKRecognition *)results withEndOfUtterance:(BOOL)endOfUtterance
 {
-    _recognition = results;
-    [self.tableView reloadData];
+    [_logTextView appendText:[NSString stringWithFormat:@"Hypotheses: %@", [results.hypotheses componentsJoinedByString:@", "]]];
+
+    if (endOfUtterance) {
+        [_logTextView appendText:[NSString stringWithFormat:@"Best result: %@", results.bestResultText]];
+    }
 }
 
-- (void)recognizer:(YSKRecognizer *)recognizer didCompleteWithResults:(YSKRecognition *)results
+- (void)recognizerDidFinishRecognition:(id<YSKRecognizing>)recognizer
 {
-    _recognition = results;
-    [self.tableView reloadData];
-    
-    _recognizer = nil;
-    _sectionHeaderView.recognizeButton.enabled = YES;
+    [_logTextView appendText:@"Finish recognition process"];
 }
 
-- (void)recognizer:(YSKRecognizer *)recognizer didUpdatePower:(float)power
+- (void)recognizer:(id<YSKRecognizing>)recognizer didUpdatePower:(float)power
 {
     // Show voice "power" line.
-    _sectionHeaderView.powerView.power = power;
+    _progressView.progress = power;
 }
 
-- (void)recognizer:(YSKRecognizer *)recognizer didFailWithError:(NSError *)error
+- (void)recognizer:(id<YSKRecognizing>)recognizer didFailWithError:(NSError *)error
 {
-    // Show error alert if something goes wrong.
-    UIAlertController *failAlert = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
-    [failAlert addAction:defaultAction];
-    [self presentViewController:failAlert animated:YES completion:nil];
-    
-    _recognizer = nil;
-    _sectionHeaderView.recognizeButton.enabled = YES;
+    [_logTextView appendText:error.localizedDescription];
 }
 
 @end

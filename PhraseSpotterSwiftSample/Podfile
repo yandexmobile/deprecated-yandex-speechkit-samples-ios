@@ -1,6 +1,7 @@
 platform :ios, '8.0'
 
-target :PhraseSpotterSwiftSample do
-  xcodeproj 'PhraseSpotterSwiftSample.xcodeproj'
-  pod 'YandexSpeechKit', '2.5.0'
+project 'PhraseSpotterSwiftSample'
+
+target 'PhraseSpotterSwiftSample' do
+    pod 'YandexSpeechKit', '3.12.2'
 end

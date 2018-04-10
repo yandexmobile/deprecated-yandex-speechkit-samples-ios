@@ -2,7 +2,7 @@
 //  YSKRecognizerViewController.m
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,83 +16,81 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <YandexSpeechKit/SpeechKit.h>
-
+#import <YandexSpeechKit/YandexSpeechKit.h>
 #import "YSKRecognizerViewController.h"
+#import "YSKTextView.h"
 
-@interface YSKRecognizerViewController ()<YSKSpeechRecognitionViewControllerDelegate> {
-    NSString *_recognizerModel;
-    NSString *_recognizerLanguage;
+@interface YSKRecognizerViewController ()<YSKRecognizerDialogControllerDelegate> {
+    IBOutlet UIButton *_startButton;
+    IBOutlet YSKTextView *_logTextView;
 }
-
-@property (nonatomic, weak) IBOutlet UITextView *resultTextView;
-
-- (IBAction)onRecognizerButtonTap:(id)sender;
-
+- (IBAction)onStartButtonTap:(id)sender;
 @end
 
 @implementation YSKRecognizerViewController
-
-- (instancetype)initWithLanguage:(NSString *)language model:(NSString *)model
-{
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        _recognizerModel = model;
-        _recognizerLanguage = language;
-    }
-    return self;
-}
 
 #pragma mark - UIViewController Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.title = @"Recognizer GUI Sample";
 }
 
-#pragma mark - Actions
-
-- (IBAction)onRecognizerButtonTap:(id)sender
+- (void)viewDidAppear:(BOOL)animated
 {
-    // Initialize YSKSpeechRecognitionViewController instance with language and model.
-    YSKSpeechRecognitionViewController *controller = [[YSKSpeechRecognitionViewController alloc] initWithLanguage:_recognizerLanguage model:_recognizerModel];
+    [super viewDidAppear:animated];
+
+    // Before start recording or playing you should activate application's audio session.
+    // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+    // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong typeof(wself) sself = wself;
+        if (sself == nil) return;
+
+        NSError *error;
+        // This process could take much time, so it's recommended to call this method in background thread.
+        BOOL success = [[YSKAudioSessionHandler sharedInstance] activateAudioSession:&error];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                sself->_startButton.enabled = YES;
+            }
+            else {
+                [sself->_logTextView appendText:error.localizedDescription];
+            }
+        });
+    });
+}
+
+#pragma mark - Action
+
+- (IBAction)onStartButtonTap:(id)sender
+{
+    YSKOnlineRecognizerSettings *recognizerSettings = [[YSKOnlineRecognizerSettings alloc] initWithLanguage:[YSKLanguage russian] model:[YSKOnlineModel queries]];
+    YSKRecognizerDialogController *controller = [[YSKRecognizerDialogController alloc] initWithRecognizerSettings:recognizerSettings];
     controller.delegate = self;
-    
-    // Show YSKSpeechRecognitionViewController.
-    [self presentViewController:controller animated:YES completion:nil];
+    [controller presentRecognizerDialogOverPresentingController:self animated:YES completion:nil];
 }
 
-#pragma mark - YSKSpeechRecognitionViewControllerDelegate
+#pragma mark - YSKRecognizerDialogControllerDelegate
 
-- (void)speechRecognitionViewController:(YSKSpeechRecognitionViewController *)speechRecognitionViewController didFinishWithResult:(NSString *)result
+- (void)recognizerDialogController:(YSKRecognizerDialogController *)controller didFinishWithResult:(NSString *)result
 {
-    // Show YSKSpeechRecognitionViewController result...
-    _resultTextView.text = result;
-    
-    // and hide it.
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // Show YSKRecognizerDialogController result.
+    [_logTextView appendText:result];
 }
 
-- (void)speechRecognitionViewController:(YSKSpeechRecognitionViewController *)speechRecognitionViewController didFailWithError:(NSError *)error
+- (void)recognizerDialogController:(YSKRecognizerDialogController *)controller didFailWithError:(NSError *)error
 {
     // Show error alert if something goes wrong.
-    UIAlertController *failAlert = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
-    [failAlert addAction:defaultAction];
-    
-    __weak typeof(self) wself = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [wself presentViewController:failAlert animated:YES completion:nil];
-    }];
+    [_logTextView appendText:error.localizedDescription];
 }
 
-- (void)speechRecognitionViewController:(YSKSpeechRecognitionViewController *)speechRecognitionViewController didChangeLanguage:(NSString *)language
+- (void)recognizerDialogControllerDidClose:(YSKRecognizerDialogController *)controller automatically:(BOOL)automatically
 {
-    // Here you can remember selected language and use it when starting recognition next time.
+    [_logTextView appendText:[NSString stringWithFormat:@"Dialog was closed %@", automatically ? @"automatically" : @"by user"]];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  UIColor+Hex.m
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,18 +22,27 @@
 
 + (UIColor *)colorWithHex:(NSString *)hex
 {
+    return [self colorWithHex:hex alpha:1.f];
+}
+
++ (UIColor *)colorWithHex:(NSString *)hex alpha:(CGFloat)alpha
+{
     unsigned int rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hex];
     [scanner scanHexInt:&rgbValue];
     return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
                            green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
                             blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
-                           alpha:1.0];
+                           alpha:alpha];
 }
 
-+ (UIColor *)YSKBackgroundColor
++ (UIColor *)tintColor
 {
-    return [UIColor colorWithHex:@"0xF6DB4C"];
+    return [self tintColorWithAlpha:1.f];
 }
 
++ (UIColor *)tintColorWithAlpha:(CGFloat)alpha
+{
+    return [UIColor colorWithHex:@"0x228F56" alpha:alpha];
+}
 @end

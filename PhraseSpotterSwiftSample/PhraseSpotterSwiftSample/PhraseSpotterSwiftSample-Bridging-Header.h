@@ -2,7 +2,7 @@
 //  PhraseSpotterSwiftSample-Bridging-Header.h
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,6 +19,6 @@
 #ifndef PhraseSpotterSwiftSample_Bridging_Header_h
 #define PhraseSpotterSwiftSample_Bridging_Header_h
 
-#import <YandexSpeechKit/SpeechKit.h>
+#import <YandexSpeechKit/YandexSpeechKit.h>
 
 #endif /* PhraseSpotterSwiftSample_Bridging_Header_h */

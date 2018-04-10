@@ -2,7 +2,7 @@
 //  YSKRecognizerViewController.swift
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,132 +18,107 @@
 
 import UIKit
 
-class YSKRecognizerViewController: UITableViewController, YSKRecognizerDelegate {
+class YSKRecognizerViewController: UIViewController, YSKRecognizerDelegate {
 
-    let kTableViewCellReuseIdentifier = "cellID"
-    
-    var recognizer: YSKRecognizer?
-    var recognition: YSKRecognition?
-    
-    var recognizerLanguage: String?
-    var recognizerModel: String?
-    
-    var sectionHeaderView: YSKRecognizerSectionHeaderView?
-    
-    convenience init(recognizerLanguage language: String?, recognizerModel model: String?) {
-        self.init(style: .plain)
-        
-        recognizerLanguage = language
-        recognizerModel = model
-    }
-    
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var logTextView: YSKTextView!
+
+    var recognizer: YSKOnlineRecognizer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "Recognizer Swift Sample"
-        
-        sectionHeaderView = YSKRecognizerSectionHeaderView.loadFromNIB() as? YSKRecognizerSectionHeaderView
-        
-        sectionHeaderView?.recognizeButton?.addTarget(self, action: #selector(YSKRecognizerViewController.onRecognizerButtonTap), for: .touchUpInside)
-        sectionHeaderView?.stopButton?.addTarget(self, action: #selector(YSKRecognizerViewController.onStopButtonTap), for: .touchUpInside)
-        
-        tableView.tableFooterView = UIView()
-        tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(UINib.init(nibName: "YSKRecognizerCell", bundle: nil), forCellReuseIdentifier: kTableViewCellReuseIdentifier)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Before start recording or playing you should activate application's audio session.
+        // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+        // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+        DispatchQueue.global(qos: .default).async { [unowned self] in
+            var activationError: Error?
+            do {
+                // This process could take much time, so it's recommended to call this method in background thread.
+                try YSKAudioSessionHandler.sharedInstance().activateAudioSession()
+            } catch let error {
+                activationError = error
+            }
+
+            DispatchQueue.main.async {
+                if let error = activationError {
+                    self.logTextView.append(text: error.localizedDescription)
+                } else {
+                    self.createRecognizer()
+                    self.startButton.isEnabled = true
+                    self.stopButton.isEnabled = true
+                }
+            }
+        }
     }
 
     // MARK: - Actions
     
-    func onRecognizerButtonTap() {
-        // Create new YSKRecognizer instance for every request.
-        recognizer = YSKRecognizer(language: recognizerLanguage, model: recognizerModel)
-        recognizer?.delegate = self
-        recognizer?.isVADEnabled = true
-        
-        // Cleanup previouse result.
-        recognition = nil;
-
+    @IBAction func onStartButtonTap() {
         // Start recognition.
-        recognizer?.start();
+        recognizer?.startRecording()
     }
     
-    func onStopButtonTap() {
+    @IBAction func onStopButtonTap() {
         //Stop recognition
-        recognizer?.cancel()
-        recognizer = nil
+        recognizer?.stopRecording()
     }
 
-    // MARK: - UITableViewDataSource
+    // MARK: - Internal
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recognition?.hypotheses?.count ?? 0;
-    }
+    private func createRecognizer() {
+        let settings = YSKOnlineRecognizerSettings(language: YSKLanguage.russian(), model: YSKOnlineModel.queries())
+        //Optional settings
+        settings.disableAntimat = true
+        settings.enablePunctuation = false
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kTableViewCellReuseIdentifier, for: indexPath) as? YSKRecognizerCell
-
-        // Use recognition YSKRecognition -bestResultText value for the best recognition result.
-        // Or -hypotheses for displaying all options.
-        let hypothesis = recognition!.hypotheses[indexPath.row] as! YSKRecognitionHypothesis
-        cell!.resultLabel?.text = hypothesis.normalized
-        cell!.percentLabel?.text = String(format: "%ld%%", (100 * hypothesis.confidence))
-        
-        return cell!
-    }
-
-    // MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return sectionHeaderView
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 72.0
+        recognizer = YSKOnlineRecognizer(settings: settings)
+        recognizer?.delegate = self
+        recognizer?.prepare()
     }
     
     // MARK: - YSKRecognizerDelegate
     
-    func recognizerDidStartRecording(_ recognizer: YSKRecognizer!) {
-        tableView.reloadData()
-        sectionHeaderView?.recognizeButton?.isEnabled = false
-        
+    func recognizerDidStartRecording(_ recognizer: YSKRecognizing) {
+        logTextView.append(text: "Start recording...")
+
         // Start showing voice "power" line.
-        sectionHeaderView?.powerView?.power = 0.0
+        progressView.progress = 0.0
     }
     
-    func recognizerDidFinishRecording(_ recognizer: YSKRecognizer!) {
+    func recognizerDidFinishRecording(_ recognizer: YSKRecognizing) {
+        logTextView.append(text: "Finish recording")
+
         // Stop showing voice "power" line.
-        sectionHeaderView?.powerView?.power = 0.0
+        progressView.progress = 0.0
     }
     
-    func recognizer(_ recognizer: YSKRecognizer!, didReceivePartialResults results: YSKRecognition!, withEndOfUtterance endOfUtterance: Bool) {
-        recognition = results
-        tableView.reloadData()
+    func recognizer(_ recognizer: YSKRecognizing, didReceivePartialResults results: YSKRecognition, withEndOfUtterance endOfUtterance: Bool) {
+        logTextView.append(text: "Hypotheses: " + results.description)
+
+        if endOfUtterance {
+            logTextView.append(text: "Best result: " + results.bestResultText);
+        }
     }
     
-    func recognizer(_ recognizer: YSKRecognizer!, didCompleteWithResults results: YSKRecognition!) {
-        recognition = results
-        tableView.reloadData()
-        
-        self.recognizer = nil;
-        sectionHeaderView?.recognizeButton?.isEnabled = true
+    func recognizerDidFinishRecognition(_ recognizer: YSKRecognizing) {
+        logTextView.append(text: "Finish recognition process")
     }
     
-    func recognizer(_ recognizer: YSKRecognizer!, didUpdatePower power: Float) {
+    func recognizer(_ recognizer: YSKRecognizing, didUpdatePower power: Float) {
         // Show voice "power" line.
-        sectionHeaderView?.powerView?.power = CGFloat(power)
+        progressView.progress = power
     }
     
-    func recognizer(_ recognizer: YSKRecognizer!, didFailWithError error: Error!) {
-        let failAlert = UIAlertController.init(title: nil, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-        let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler: nil)
-        failAlert.addAction(action)
-        
-        self.present(failAlert, animated: true, completion: nil);
-        
-        self.recognizer = nil;
-        sectionHeaderView?.recognizeButton?.isEnabled = true
+    func recognizer(_ recognizer: YSKRecognizing, didFailWithError error: Error) {
+        logTextView.append(text: error.localizedDescription)
     }
 
 }

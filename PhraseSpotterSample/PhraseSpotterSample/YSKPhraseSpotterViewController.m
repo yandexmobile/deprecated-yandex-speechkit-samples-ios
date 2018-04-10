@@ -2,7 +2,7 @@
 //  YSKPhraseSpotterViewController.m
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,31 +16,22 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <YandexSpeechKit/SpeechKit.h>
-
+#import <YandexSpeechKit/YandexSpeechKit.h>
 #import "YSKPhraseSpotterViewController.h"
+#import "YSKTextView.h"
 
-@interface YSKPhraseSpotterViewController ()<YSKPhraseSpotterDelegate> {
-    NSString *_modelConfigDirectory;
+@interface YSKPhraseSpotterViewController () <YSKPhraseSpotterDelegate> {
+    IBOutlet UIButton *_startButton;
+    IBOutlet UIButton *_stopButton;
+    IBOutlet YSKTextView *_logTextView;
+
+    YSKPhraseSpotter *_phraseSpotter;
 }
+- (IBAction)onStartButtonTap:(id)sender;
+- (IBAction)onStopButtonTap:(id)sender;
 @end
 
 @implementation YSKPhraseSpotterViewController
-
-- (instancetype)initWithModelConfigDirectory:(NSString *)configDirectory
-{
-    self = [super initWithNibName:nil bundle:nil];
-    if (self) {
-        _modelConfigDirectory = configDirectory;
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [YSKPhraseSpotter setDelegate:nil];
-    [YSKPhraseSpotter setModel:nil];
-}
 
 - (void)viewDidLoad
 {
@@ -51,97 +42,73 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    NSError *error;
-    
-    if (![self configureAndStartPhraseSpotterWithError:&error]) {
-        [self showAllertWithError:error];
-    }
-    
-    [YSKPhraseSpotter setDelegate:self];
+
+    // Before start recording or playing you should activate application's audio session.
+    // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+    // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        __strong typeof(wself) sself = wself;
+        if (sself == nil) return;
+
+        NSError *error;
+        // This process could take much time, so it's recommended to call this method in background thread.
+        BOOL success = [[YSKAudioSessionHandler sharedInstance] activateAudioSession:&error];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [sself createPhraseSpotter];
+                sself->_startButton.enabled = YES;
+                sself->_stopButton.enabled = YES;
+            }
+            else {
+                [sself->_logTextView appendText:error.localizedDescription];
+            }
+        });
+    });
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+#pragma mark - Actions
+
+- (IBAction)onStartButtonTap:(id)sender
 {
-    [super viewDidDisappear:animated];
-    [YSKPhraseSpotter stop];
+    [_phraseSpotter start];
+}
+
+- (IBAction)onStopButtonTap:(id)sender
+{
+    [_phraseSpotter stop];
+    [_logTextView appendText:@"Stop spotting process"];
 }
 
 #pragma mark - Internal
 
-- (BOOL)configureAndStartPhraseSpotterWithError:(NSError **)error
+- (void)createPhraseSpotter
 {
-    // Create YSKPhraseSpotterModel with config file directory.
-    // For config file format see documentation or sample config.
-    // To create custom phrase spotting model please refer documentation.
-    YSKPhraseSpotterModel *model = [[YSKPhraseSpotterModel alloc] initWithConfigDirectory:_modelConfigDirectory];
-    
-    // Load model with pre-setted config and check for error.
-    *error = [model load];
-    if (![self noErrorForError:*error])
-        return NO;
-    
-    // Set model to PhraseSpotter and check for error.
-    *error = [YSKPhraseSpotter setModel:model];
-    if (![self noErrorForError:*error])
-        return NO;
-
-    // Start PhraseSpotter and check for error.
-    *error = [YSKPhraseSpotter start];
-    
-    return [self noErrorForError:*error];
-}
-
-- (void)showAllertWithError:(NSError *)error
-{
-    // Show error alert if something goes wrong.
-    UIAlertController *failAlert = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
-    [failAlert addAction:defaultAction];
-    [self presentViewController:failAlert animated:YES completion:nil];
-}
-
-- (BOOL)noErrorForError:(NSError *)error
-{
-    // If error code is equal to kYSKErrorOk, there is no error.
-    return error.code == kYSKErrorOk;
+    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"phrase_spotter_model"];
+    YSKPhraseSpotterSettings *settings = [[YSKPhraseSpotterSettings alloc] initWithModelPath:path];
+    _phraseSpotter = [[YSKPhraseSpotter alloc] initWithSettings:settings];
+    _phraseSpotter.delegate = self;
+    [_phraseSpotter prepare];
 }
 
 #pragma mark - YSKPhraseSpotterDelegate
 
-- (void)phraseSpotterDidStarted
+- (void)phraseSpotterDidStarted:(YSKPhraseSpotter *)phraseSpotter
 {
-    // Use this callback for your own purpose.
+    [_logTextView appendText:@"Start spotting process..."];
 }
 
-- (void)phraseSpotterDidStopped
-{
-    // Use this callback for your own purpose.
-}
-
-- (void)phraseSpotterDidSpotPhrase:(NSString *)phrase withIndex:(int)phraseIndex
+- (void)phraseSpotter:(YSKPhraseSpotter *)phraseSpotter didSpotPhrase:(NSString *)phrase withIndex:(NSInteger)phraseIndex
 {
     // Make an action when PhraseSpotter spotted the phrase.
-    NSLog(@"[PhraseStopperSample] YSKPhraseSpotterViewController<%p> -phraseSpotterDidSpotPhrase:%@ withIndex:%d", self, phrase, phraseIndex);
-    
-    NSString *message = [phrase stringByReplacingOccurrencesOfString:@"_" withString:@" "];
-    message = [NSString stringWithFormat:@"\"%@\"", message];
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Your message is" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    __weak typeof(self) wself = self;
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [wself dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    NSString *message = [phrase stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+    [_logTextView appendText:[NSString stringWithFormat:@"Spot pharse: %@", message]];
 }
 
-- (void)phraseSpotterDidFailWithError:(NSError *)error
+- (void)phraseSpotter:(YSKPhraseSpotter *)phraseSpotter didFailWithError:(NSError *)error
 {
-    [self showAllertWithError:error];
+    [_logTextView appendText:error.localizedDescription];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,19 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Configure SpeechKit lib, this method should be called _before_ any SpeechKit functions.
         // Generate your own app key for this purpose.
-        YSKSpeechKit.sharedInstance().configure(withAPIKey: "069b6659-984b-4c5f-880e-aaedcfd84102");
+        YSKSpeechKit.sharedInstance().apiKey = "developer_app_key"
 
         // [OPTIONAL] Set SpeechKit log level, for more options see YSKLogLevel enum.
-        YSKSpeechKit.sharedInstance().setLogLevel(YSKLogLevel(YSKLogLevelWarn));
+        YSKSpeechKit.sharedInstance().logLevel = .error
         
-        // [OPTIONAL] Set YSKSpeechKit parameters, for all parameters and possible values see documentation.
-        YSKSpeechKit.sharedInstance().setParameter(YSKDisableAntimat, withValue: "false");
+        // Required for online requests
+        YSKSpeechKit.sharedInstance().uuid = "application_uuid";
         
-        window = UIWindow(frame: UIScreen.main.bounds);
-        
-        let recognizerController = YSKRecognizerViewController(recognizerLanguage: YSKRecognitionLanguageRussian, recognizerModel: YSKRecognitionModelGeneral);
-        let navigationController = UINavigationController(rootViewController: recognizerController);
-        navigationController.navigationBar.isTranslucent = true;
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        let navigationController = UINavigationController(rootViewController: YSKRecognizerViewController());
+        navigationController.navigationBar.isTranslucent = false;
         window?.rootViewController = navigationController;
         
         window?.makeKeyAndVisible();

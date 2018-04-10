@@ -8,21 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		2608BC411C2838660023527A /* YSKRecognizerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2608BC401C2838660023527A /* YSKRecognizerViewController.xib */; };
-		26367A731C58C693000ABF1A /* CALayer+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 26367A721C58C693000ABF1A /* CALayer+Color.m */; };
 		264491061C22C52000015FAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 264491051C22C52000015FAF /* main.m */; };
 		264491091C22C52000015FAF /* YSKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 264491081C22C52000015FAF /* YSKAppDelegate.m */; };
 		2644910C1C22C52000015FAF /* YSKRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2644910B1C22C52000015FAF /* YSKRecognizerViewController.m */; };
 		264491111C22C52000015FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264491101C22C52000015FAF /* Assets.xcassets */; };
 		264491141C22C52000015FAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264491121C22C52000015FAF /* LaunchScreen.storyboard */; };
+		26E815C21FC5984700574EC4 /* YSKButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E815B91FC5984600574EC4 /* YSKButton.m */; };
+		26E815C31FC5984700574EC4 /* YSKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E815BB1FC5984600574EC4 /* YSKTextView.m */; };
+		26E815C41FC5984700574EC4 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E815BE1FC5984600574EC4 /* UIColor+Hex.m */; };
+		26E815C51FC5984700574EC4 /* YSKAppearanceSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E815C11FC5984600574EC4 /* YSKAppearanceSettings.m */; };
 		FD026438B7F6AAEB37ED9EAE /* libPods-RecognizerUISample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA162D16BCF72483098C730 /* libPods-RecognizerUISample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1AF1701A75D6D21B089FA06B /* Pods-RecognizerUISample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerUISample.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample.debug.xcconfig"; sourceTree = "<group>"; };
 		2608BC401C2838660023527A /* YSKRecognizerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YSKRecognizerViewController.xib; sourceTree = "<group>"; };
-		26367A711C58C693000ABF1A /* CALayer+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Color.h"; sourceTree = "<group>"; };
-		26367A721C58C693000ABF1A /* CALayer+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Color.m"; sourceTree = "<group>"; };
-		264491011C22C52000015FAF /* GUIRecognizerSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GUIRecognizerSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		264491011C22C52000015FAF /* RecognizerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecognizerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264491051C22C52000015FAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		264491071C22C52000015FAF /* YSKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YSKAppDelegate.h; sourceTree = "<group>"; };
 		264491081C22C52000015FAF /* YSKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YSKAppDelegate.m; sourceTree = "<group>"; };
@@ -31,6 +32,14 @@
 		264491101C22C52000015FAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		264491131C22C52000015FAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		264491151C22C52000015FAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E815B81FC5984600574EC4 /* YSKButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKButton.h; sourceTree = "<group>"; };
+		26E815B91FC5984600574EC4 /* YSKButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKButton.m; sourceTree = "<group>"; };
+		26E815BA1FC5984600574EC4 /* YSKTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKTextView.h; sourceTree = "<group>"; };
+		26E815BB1FC5984600574EC4 /* YSKTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKTextView.m; sourceTree = "<group>"; };
+		26E815BD1FC5984600574EC4 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		26E815BE1FC5984600574EC4 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		26E815C01FC5984600574EC4 /* YSKAppearanceSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSKAppearanceSettings.h; sourceTree = "<group>"; };
+		26E815C11FC5984600574EC4 /* YSKAppearanceSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSKAppearanceSettings.m; sourceTree = "<group>"; };
 		5EA162D16BCF72483098C730 /* libPods-RecognizerUISample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RecognizerUISample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EEB340917F0C85A61998B0D /* Pods-RecognizerUISample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerUISample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample.release.xcconfig"; sourceTree = "<group>"; };
 		8F5EF30CF1ADC202912FC5C4 /* Pods-RecognizerUISample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecognizerUISample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -60,15 +69,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		26367A701C58C693000ABF1A /* categories */ = {
-			isa = PBXGroup;
-			children = (
-				26367A711C58C693000ABF1A /* CALayer+Color.h */,
-				26367A721C58C693000ABF1A /* CALayer+Color.m */,
-			);
-			path = categories;
-			sourceTree = "<group>";
-		};
 		264490F81C22C52000015FAF = {
 			isa = PBXGroup;
 			children = (
@@ -82,7 +82,7 @@
 		264491021C22C52000015FAF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				264491011C22C52000015FAF /* GUIRecognizerSample.app */,
+				264491011C22C52000015FAF /* RecognizerUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,7 +90,9 @@
 		264491031C22C52000015FAF /* RecognizerUISample */ = {
 			isa = PBXGroup;
 			children = (
-				26367A701C58C693000ABF1A /* categories */,
+				26E815BC1FC5984600574EC4 /* categories */,
+				26E815BF1FC5984600574EC4 /* utils */,
+				26E815B71FC5984600574EC4 /* views */,
 				264491071C22C52000015FAF /* YSKAppDelegate.h */,
 				264491081C22C52000015FAF /* YSKAppDelegate.m */,
 				2644910A1C22C52000015FAF /* YSKRecognizerViewController.h */,
@@ -112,6 +114,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		26E815B71FC5984600574EC4 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				26E815B81FC5984600574EC4 /* YSKButton.h */,
+				26E815B91FC5984600574EC4 /* YSKButton.m */,
+				26E815BA1FC5984600574EC4 /* YSKTextView.h */,
+				26E815BB1FC5984600574EC4 /* YSKTextView.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		26E815BC1FC5984600574EC4 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				26E815BD1FC5984600574EC4 /* UIColor+Hex.h */,
+				26E815BE1FC5984600574EC4 /* UIColor+Hex.m */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
+		26E815BF1FC5984600574EC4 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				26E815C01FC5984600574EC4 /* YSKAppearanceSettings.h */,
+				26E815C11FC5984600574EC4 /* YSKAppearanceSettings.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		5B29DA3E8D9ED218AAD75B53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,12 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 264491181C22C52000015FAF /* Build configuration list for PBXNativeTarget "RecognizerUISample" */;
 			buildPhases = (
-				93624CC4873339D5ACB77DDE /* Check Pods Manifest.lock */,
+				93624CC4873339D5ACB77DDE /* [CP] Check Pods Manifest.lock */,
 				264490FD1C22C52000015FAF /* Sources */,
 				264490FE1C22C52000015FAF /* Frameworks */,
 				264490FF1C22C52000015FAF /* Resources */,
-				84FE6C6B000CD590B8DED3CC /* Copy Pods Resources */,
-				60F0411C93E56398DE89C38C /* Embed Pods Frameworks */,
+				84FE6C6B000CD590B8DED3CC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,7 +170,7 @@
 			);
 			name = RecognizerUISample;
 			productName = RecognizerUISample;
-			productReference = 264491011C22C52000015FAF /* GUIRecognizerSample.app */;
+			productReference = 264491011C22C52000015FAF /* RecognizerUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +179,7 @@
 		264490F91C22C52000015FAF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Yandex LLC";
 				TargetAttributes = {
 					264491001C22C52000015FAF = {
@@ -189,49 +219,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60F0411C93E56398DE89C38C /* Embed Pods Frameworks */ = {
+		84FE6C6B000CD590B8DED3CC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample-resources.sh",
+				"${PODS_ROOT}/YandexSpeechKit/YandexSpeechKit.framework/Versions/A/Resources/YandexSpeechKit.bundle",
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		84FE6C6B000CD590B8DED3CC /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexSpeechKit.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RecognizerUISample/Pods-RecognizerUISample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93624CC4873339D5ACB77DDE /* Check Pods Manifest.lock */ = {
+		93624CC4873339D5ACB77DDE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecognizerUISample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -242,8 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2644910C1C22C52000015FAF /* YSKRecognizerViewController.m in Sources */,
-				26367A731C58C693000ABF1A /* CALayer+Color.m in Sources */,
+				26E815C41FC5984700574EC4 /* UIColor+Hex.m in Sources */,
+				26E815C21FC5984700574EC4 /* YSKButton.m in Sources */,
 				264491091C22C52000015FAF /* YSKAppDelegate.m in Sources */,
+				26E815C51FC5984700574EC4 /* YSKAppearanceSettings.m in Sources */,
+				26E815C31FC5984700574EC4 /* YSKTextView.m in Sources */,
 				264491061C22C52000015FAF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,13 +294,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -314,13 +346,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -351,11 +391,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RecognizerUISample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.RecognizerUISample;
-				PRODUCT_NAME = GUIRecognizerSample;
+				PRODUCT_NAME = RecognizerUI;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -367,11 +408,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RecognizerUISample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yandex.speechkit.RecognizerUISample;
-				PRODUCT_NAME = GUIRecognizerSample;
+				PRODUCT_NAME = RecognizerUI;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;

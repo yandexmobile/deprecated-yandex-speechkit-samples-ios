@@ -2,7 +2,7 @@
 //  YSKAppDelegate.m
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,10 +16,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <YandexSpeechKit/SpeechKit.h>
+#import <YandexSpeechKit/YandexSpeechKit.h>
 
 #import "YSKAppDelegate.h"
 #import "YSKRecognizerViewController.h"
+#import "YSKAppearanceSettings.h"
 
 @implementation YSKAppDelegate
 
@@ -27,12 +28,17 @@
 {
     // Configure SpeechKit lib, this method should be called _before_ any SpeechKit functions.
     // Generate your own app key for this purpose.
-    [[YSKSpeechKit sharedInstance] configureWithAPIKey:@"069b6659-984b-4c5f-880e-aaedcfd84102"];
+    [YSKSpeechKit sharedInstance].apiKey = @"developer_app_key";
+
+    // [OPTIONAL] Set SpeechKit log level, for more options see YSKLogLevel enum.
+    [YSKSpeechKit sharedInstance].logLevel = YSKLogLevelError;
+
+    // Required for online requests
+    [YSKSpeechKit sharedInstance].uuid = @"application_uuid";
 
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    YSKRecognizerViewController *controller = [[YSKRecognizerViewController alloc] initWithLanguage:YSKRecognitionLanguageRussian model:YSKRecognitionModelGeneral];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[YSKRecognizerViewController new]];
     navigationController.navigationBar.translucent = NO;
     _window.rootViewController = navigationController;
     

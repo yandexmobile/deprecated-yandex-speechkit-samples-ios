@@ -1,64 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSKRecognizerViewController">
             <connections>
-                <outlet property="resultTextView" destination="1sx-bx-KMm" id="6DO-R3-aek"/>
+                <outlet property="_logTextView" destination="rqS-D4-6EI" id="DFE-V5-ZJK"/>
+                <outlet property="_startButton" destination="bp2-cP-SqQ" id="bOi-x9-n9Y"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ata-hb-JfW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ann-eu-Q1O" userLabel="Microphone Button">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp2-cP-SqQ" customClass="YSKButton">
+                    <rect key="frame" x="20" y="20" width="335" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="90" id="3gv-OO-I2e"/>
-                        <constraint firstAttribute="height" constant="90" id="qAx-n7-6q8"/>
+                        <constraint firstAttribute="height" constant="30" id="L2W-vg-BMn"/>
                     </constraints>
-                    <state key="normal" image="microphone"/>
+                    <state key="normal" title="Start Recognition"/>
                     <connections>
-                        <action selector="onRecognizerButtonTap:" destination="-1" eventType="touchUpInside" id="WvS-Kw-uVx"/>
+                        <action selector="onStartButtonTap:" destination="-1" eventType="touchUpInside" id="Cqa-bf-I8U"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recognition result" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fF-Ix-aVA">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="16" id="JRi-84-c4U"/>
-                    </constraints>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Recognition Process" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rqS-D4-6EI" customClass="YSKTextView">
+                    <rect key="frame" x="20" y="70" width="335" height="513"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text=" " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1sx-bx-KMm" userLabel="Result Text View">
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                            <integer key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                            <color key="value" red="0.96470588235294119" green="0.85882352941176465" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </textView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstItem="1sx-bx-KMm" firstAttribute="top" secondItem="7fF-Ix-aVA" secondAttribute="bottom" constant="8" id="2Rz-HJ-YXP"/>
-                <constraint firstAttribute="trailing" secondItem="1sx-bx-KMm" secondAttribute="trailing" constant="20" id="78F-MC-5GK"/>
-                <constraint firstItem="Ann-eu-Q1O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ihm-MR-CJd"/>
-                <constraint firstAttribute="bottom" secondItem="1sx-bx-KMm" secondAttribute="bottom" constant="20" id="ZwY-eg-ISo"/>
-                <constraint firstItem="Ann-eu-Q1O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="cO9-8e-NM3"/>
-                <constraint firstAttribute="trailing" secondItem="7fF-Ix-aVA" secondAttribute="trailing" constant="30" id="d7T-3M-W57"/>
-                <constraint firstItem="7fF-Ix-aVA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="n1d-O2-OUt"/>
-                <constraint firstItem="1sx-bx-KMm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="wJq-KZ-1Tk"/>
-                <constraint firstItem="7fF-Ix-aVA" firstAttribute="top" secondItem="Ann-eu-Q1O" secondAttribute="bottom" constant="50" id="wUt-AX-PhT"/>
+                <constraint firstAttribute="bottom" secondItem="rqS-D4-6EI" secondAttribute="bottom" constant="20" id="95R-cc-MLV"/>
+                <constraint firstItem="rqS-D4-6EI" firstAttribute="top" secondItem="bp2-cP-SqQ" secondAttribute="bottom" constant="20" id="HAh-4z-3OS"/>
+                <constraint firstItem="bp2-cP-SqQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="QK4-dX-OnH"/>
+                <constraint firstAttribute="trailing" secondItem="rqS-D4-6EI" secondAttribute="trailing" constant="20" id="ZPn-h9-e1v"/>
+                <constraint firstItem="rqS-D4-6EI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="uGG-03-0AJ"/>
+                <constraint firstAttribute="trailing" secondItem="bp2-cP-SqQ" secondAttribute="trailing" constant="20" id="uvh-QL-nRl"/>
+                <constraint firstItem="bp2-cP-SqQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="wBU-B6-Y9x"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -66,7 +54,4 @@
             <point key="canvasLocation" x="34" y="11"/>
         </view>
     </objects>
-    <resources>
-        <image name="microphone" width="90" height="90"/>
-    </resources>
 </document>

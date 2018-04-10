@@ -1,60 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YSKPhraseSpotterViewController" customModule="PhraseSpotterSwiftSample" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i1h-s9-Hz8" id="lgC-Vq-6IP"/>
+                <outlet property="logTextView" destination="NR5-Sr-NhG" id="E7L-kC-wry"/>
+                <outlet property="startButton" destination="1lr-2N-Ihm" id="ltx-Kw-qMP"/>
+                <outlet property="stopButton" destination="Pfb-OH-swg" id="nPw-p2-Cgd"/>
+                <outlet property="view" destination="iN0-l3-epB" id="lbH-Vr-x65"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="i1h-s9-Hz8">
-            <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xsk-5E-y5Z" userLabel="Container View">
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="microphone" translatesAutoresizingMaskIntoConstraints="NO" id="IiI-7F-Qsq">
-                            <constraints>
-                                <constraint firstAttribute="width" constant="90" id="gFN-SI-dtI"/>
-                                <constraint firstAttribute="height" constant="90" id="h3o-Oc-yP2"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Купить билет&quot; &quot;Открыть почту&quot; &quot;Будильник на семь утра&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLH-nk-xBl">
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lr-2N-Ihm" customClass="YSKButton" customModule="PhraseSpotterSwiftSample" customModuleProvider="target">
+                    <rect key="frame" x="20" y="20" width="157.5" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="gLH-nk-xBl" secondAttribute="trailing" id="0CU-Xq-j5e"/>
-                        <constraint firstItem="IiI-7F-Qsq" firstAttribute="top" secondItem="Xsk-5E-y5Z" secondAttribute="top" id="X1P-fG-Xn3"/>
-                        <constraint firstAttribute="bottom" secondItem="gLH-nk-xBl" secondAttribute="bottom" id="bCv-Vh-bSk"/>
-                        <constraint firstItem="gLH-nk-xBl" firstAttribute="leading" secondItem="Xsk-5E-y5Z" secondAttribute="leading" id="j7e-LL-hsp"/>
-                        <constraint firstItem="IiI-7F-Qsq" firstAttribute="centerX" secondItem="Xsk-5E-y5Z" secondAttribute="centerX" id="wyX-aJ-Ihx"/>
-                        <constraint firstItem="gLH-nk-xBl" firstAttribute="top" secondItem="IiI-7F-Qsq" secondAttribute="bottom" id="y76-bH-knV"/>
-                        <constraint firstAttribute="height" constant="148" id="yxt-DB-4fP"/>
+                        <constraint firstAttribute="height" constant="30" id="r4r-Q8-sfw"/>
                     </constraints>
-                </view>
+                    <state key="normal" title="Start Spotting"/>
+                    <connections>
+                        <action selector="onStartButtonTap" destination="-1" eventType="touchUpInside" id="JaF-Nn-mag"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfb-OH-swg" customClass="YSKButton" customModule="PhraseSpotterSwiftSample" customModuleProvider="target">
+                    <rect key="frame" x="197.5" y="20" width="157.5" height="30"/>
+                    <state key="normal" title="Stop Spotting"/>
+                    <connections>
+                        <action selector="onStopButtonTap" destination="-1" eventType="touchUpInside" id="S9q-Z4-A3U"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7hE-cn-ax7" userLabel="Commands Text View" customClass="YSKTextView" customModule="PhraseSpotterSwiftSample" customModuleProvider="target">
+                    <rect key="frame" x="20" y="70" width="335" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="cM4-vE-24q"/>
+                    </constraints>
+                    <string key="text">Use commands:
+
+1. "Купить билет"
+2. "Открыть почту"
+3. "Будильник на семь утра"</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="PhrasSpotter Process" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NR5-Sr-NhG" userLabel="Log Text View" customClass="YSKTextView" customModule="PhraseSpotterSwiftSample" customModuleProvider="target">
+                    <rect key="frame" x="20" y="190" width="335" height="393"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Xsk-5E-y5Z" secondAttribute="trailing" id="GDQ-gq-RII"/>
-                <constraint firstItem="Xsk-5E-y5Z" firstAttribute="centerY" secondItem="i1h-s9-Hz8" secondAttribute="centerY" id="NqY-PP-4yW"/>
-                <constraint firstItem="Xsk-5E-y5Z" firstAttribute="leading" secondItem="i1h-s9-Hz8" secondAttribute="leading" id="OEO-8n-9n6"/>
-                <constraint firstItem="Xsk-5E-y5Z" firstAttribute="centerX" secondItem="i1h-s9-Hz8" secondAttribute="centerX" id="yh3-4H-L0Z"/>
+                <constraint firstItem="1lr-2N-Ihm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="0w6-fv-UZ9"/>
+                <constraint firstItem="Pfb-OH-swg" firstAttribute="width" secondItem="1lr-2N-Ihm" secondAttribute="width" id="5H8-iW-J50"/>
+                <constraint firstAttribute="trailing" secondItem="NR5-Sr-NhG" secondAttribute="trailing" constant="20" id="9ln-zV-ISk"/>
+                <constraint firstItem="7hE-cn-ax7" firstAttribute="top" secondItem="1lr-2N-Ihm" secondAttribute="bottom" constant="20" id="HxT-cV-q5v"/>
+                <constraint firstItem="7hE-cn-ax7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="KSj-Va-uz5"/>
+                <constraint firstItem="Pfb-OH-swg" firstAttribute="leading" secondItem="1lr-2N-Ihm" secondAttribute="trailing" constant="20" id="RBq-Zp-UXG"/>
+                <constraint firstItem="NR5-Sr-NhG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RtA-pe-ay3"/>
+                <constraint firstItem="Pfb-OH-swg" firstAttribute="height" secondItem="1lr-2N-Ihm" secondAttribute="height" id="SF5-n2-23P"/>
+                <constraint firstItem="1lr-2N-Ihm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Y75-Qt-jza"/>
+                <constraint firstItem="NR5-Sr-NhG" firstAttribute="top" secondItem="7hE-cn-ax7" secondAttribute="bottom" constant="20" id="bEv-Ox-VEF"/>
+                <constraint firstAttribute="bottom" secondItem="NR5-Sr-NhG" secondAttribute="bottom" constant="20" id="cMr-TU-Z8p"/>
+                <constraint firstAttribute="trailing" secondItem="Pfb-OH-swg" secondAttribute="trailing" constant="20" id="uOc-8q-jaA"/>
+                <constraint firstAttribute="trailing" secondItem="7hE-cn-ax7" secondAttribute="trailing" constant="20" id="wnG-Wr-FRV"/>
+                <constraint firstItem="Pfb-OH-swg" firstAttribute="baseline" secondItem="1lr-2N-Ihm" secondAttribute="baseline" id="woF-BL-82q"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
-            <point key="canvasLocation" x="60" y="125"/>
+            <point key="canvasLocation" x="249" y="487"/>
         </view>
     </objects>
-    <resources>
-        <image name="microphone" width="90" height="90"/>
-    </resources>
 </document>

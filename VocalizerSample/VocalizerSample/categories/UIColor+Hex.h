@@ -2,7 +2,7 @@
 //  UIColor+Hex.h
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@
 @interface UIColor (Hex)
 
 + (UIColor *)colorWithHex:(NSString *)hex;
-+ (UIColor *)YSKBackgroundColor;
++ (UIColor *)colorWithHex:(NSString *)hex alpha:(CGFloat)alpha;
 
++ (UIColor *)tintColor;
++ (UIColor *)tintColorWithAlpha:(CGFloat)alpha;
 @end

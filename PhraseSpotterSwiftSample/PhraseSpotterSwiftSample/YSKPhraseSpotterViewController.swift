@@ -2,7 +2,7 @@
 //  YSKPhraseSpotterViewController.swift
 //
 //  This file is a part of the samples for Yandex SpeechKit Mobile SDK.
-//  Version for iOS © 2016 Yandex LLC.
+//  Version for iOS © 2018 Yandex LLC.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -20,103 +20,84 @@ import UIKit
 
 class YSKPhraseSpotterViewController: UIViewController, YSKPhraseSpotterDelegate {
 
-    private var modelDirectory: String = ""
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var logTextView: YSKTextView!
 
-    init(modelDirectory: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.modelDirectory = modelDirectory
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    deinit {
-        YSKPhraseSpotter.setDelegate(nil)
-        YSKPhraseSpotter.setModel(nil)
-    }
+    private var phraseSpotter: YSKPhraseSpotter?
 
     //MARK :- UIViewController LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "PhraseSpotter Sample"
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        do {
-            try configureAndStartPhraseSpotter()
-        } catch let error {
-            showAlert(error: error)
+        // Before start recording or playing you should activate application's audio session.
+        // See YSKAudioSessionHandler class for details of why YandexSpeechKit needed audio session.
+        // Read more about AVAudioSession here https://developer.apple.com/documentation/avfoundation/avaudiosession.
+        DispatchQueue.global(qos: .default).async { [unowned self] in
+            var activationError: Error?
+            do {
+                // This process could take much time, so it's recommended to call this method in background thread.
+                try YSKAudioSessionHandler.sharedInstance().activateAudioSession()
+            } catch let error {
+                activationError = error
+            }
+
+            DispatchQueue.main.async {
+                if let error = activationError {
+                    self.logTextView.append(text: error.localizedDescription)
+                } else {
+                    self.createPharseSpotter()
+                    self.startButton.isEnabled = true
+                    self.stopButton.isEnabled = true
+                }
+            }
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        YSKPhraseSpotter.stop()
+    //MARK :- Actions
+
+    @IBAction func onStartButtonTap() {
+        phraseSpotter?.start()
     }
 
-    //MARK :- Internal
-
-    private func configureAndStartPhraseSpotter() throws {
-        let model = YSKPhraseSpotterModel(configDirectory: modelDirectory)
-        var error = model?.load()
-        if let error = error, errorContainsErrorCode(error: error) {
-            throw error
-        }
-
-        error = YSKPhraseSpotter.setModel(model)
-        if let error = error, errorContainsErrorCode(error: error) {
-            throw error
-        }
-
-        error = YSKPhraseSpotter.start()
-        if let error = error, errorContainsErrorCode(error: error) {
-            throw error
-        }
-
-        YSKPhraseSpotter.setDelegate(self)
+    @IBAction func onStopButtonTap() {
+        phraseSpotter?.stop()
     }
 
-    private func errorContainsErrorCode(error: Error) -> Bool {
-        // If error code is equal to kYSKErrorOk, there is no error.
-        return error._code != 0;
-    }
+    //MARK: - Internal
 
-    private func showAlert(error: Error) {
-        let failAlert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        failAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(failAlert, animated: true, completion: nil)
+    private func createPharseSpotter() {
+        let modelPath = Bundle.main.resourcePath?.appending("/phrase_spotter_model")
+        guard let path = modelPath else {
+            logTextView.append(text: "Unable to load phrase spotter model.")
+            return
+        }
+
+        let settings = YSKPhraseSpotterSettings(modelPath: path)
+        phraseSpotter = YSKPhraseSpotter(settings: settings)
+        phraseSpotter?.delegate = self
+        phraseSpotter?.prepare()
     }
 
     //MARK :- YSKPhraseSpotterDelegate
 
-    func phraseSpotterDidStarted() {
+    func phraseSpotterDidStarted(_ phraseSpotter: YSKPhraseSpotter) {
         // Use this callback for your own purpose.
+        logTextView.append(text: "Start spotting process...")
     }
 
-    func phraseSpotterDidStopped() {
-        // Use this callback for your own purpose.
-    }
-
-    func phraseSpotterDidSpotPhrase(_ phrase: String!, with phraseIndex: Int32) {
+    func phraseSpotter(_ phraseSpotter: YSKPhraseSpotter, didSpotPhrase phrase: String, with phraseIndex: Int) {
         // Make an action when PhraseSpotter spotted the phrase.
-        NSLog("[PhraseStopperSample] YSKPhraseSpotterViewController<%p> -phraseSpotterDidSpotPhrase:%@ withIndex:%d", self, phrase, phraseIndex);
-
-        let message = "\"" + phrase.replacingOccurrences(of: "_", with: " ") + "\""
-        let alertController = UIAlertController(title: "Your message is", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Close", style: .cancel) { [unowned self] alert in
-            self.dismiss(animated: true, completion: nil)
-        }
-
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
+        logTextView.append(text: "Spot phrase: " + phrase.replacingOccurrences(of: "-", with: " "))
     }
 
-    func phraseSpotterDidFailWithError(_ error: Error!) {
-        showAlert(error: error)
+    func phraseSpotter(_ phraseSpotter: YSKPhraseSpotter, didFailWithError error: Error) {
+        logTextView.append(text: error.localizedDescription)
     }
 }

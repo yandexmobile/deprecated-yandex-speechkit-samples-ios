@@ -1,6 +1,7 @@
-platform :ios, '6.0'
+platform :ios, '8.0'
 
-target :VocalizerSwiftSample do
-  xcodeproj 'VocalizerSwiftSample.xcodeproj'
-  pod 'YandexSpeechKit', '2.5.0'
+project 'VocalizerSwiftSample'
+
+target 'VocalizerSwiftSample' do
+    pod 'YandexSpeechKit', '3.12.2'
 end
