@@ -17,7 +17,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Target' do
     xcodeproj 'XcodeProj'
-    pod 'YandexSpeechKit', '2.5.0'
+    pod 'YandexSpeechKit', '3.12.2'
 end
 ```
 
