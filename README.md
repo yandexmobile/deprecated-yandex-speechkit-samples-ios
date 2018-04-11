@@ -1,5 +1,5 @@
 <p align="center" >
-  <img src="https://yastatic.net/doccenter/images/tech-ru/speechkit/freeze/Ts_YHKzyKst6Oe-VCHRciqug0c.png" alt="Yandex SpeechKit" title="Yandex SpeechKit  Mobile SDK">
+  <img src="http://storage.mds.yandex.net/get-speechkit/28683/yandex_speechkit_pic.png" alt="Yandex SpeechKit" title="Yandex SpeechKit  Mobile SDK">
 </p>
 
 ## Yandex SpeechKit Mobile SDK Samples
