@@ -5,10 +5,10 @@
 ## Yandex SpeechKit Mobile SDK Samples
 These samples demonstrate how to work with
 
-* **YSKRecognizer**, a speech recognition tool.
-* **YSKSpeechRecognitionViewController**, an universal UI component for speech recognition.
+* **YSKOnlineRecognizer**, a speech recognition tool.
+* **YSKRecognizerDialogController**, an universal UI component for speech recognition.
 * **YSKPhraseSpotter**, a low-energy recognizer for a predefined set of commands.
-* **YSKVocalizer**, a tool to translate texts to speech.
+* **YSKOnlineVocalizer**, a tool to translate texts to speech.
 
 ## Grab it:
 
@@ -17,13 +17,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Target' do
     xcodeproj 'XcodeProj'
-    pod 'YandexSpeechKit', '2.5.0'
+    pod 'YandexSpeechKit', '3.12.2'
 end
 ```
 
 ## License
 
-Copyright 2016 Yandex LLC
+Copyright 2018 Yandex LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
